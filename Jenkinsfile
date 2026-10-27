@@ -4,8 +4,8 @@ pipeline {
     stages {
         stage('Build') {
             agent {
-                docker {
-                    image 'node:18-alpine'
+                dockerfile {
+                    filename 'Dockerfile.jenkins'
                     reuseNode true
                 }
             }
@@ -24,8 +24,8 @@ pipeline {
             parallel {
                 stage('Unit tests') {
                     agent {
-                        docker {
-                            image 'node:18-alpine'
+                        dockerfile {
+                            filename 'Dockerfile.jenkins'
                             reuseNode true
                         }
                     }
@@ -69,8 +69,8 @@ pipeline {
 
         stage('Deploy') {
             agent {
-                docker {
-                    image 'node:18-alpine'
+                dockerfile {
+                    filename 'Dockerfile.jenkins'
                     reuseNode true
                 }
             }

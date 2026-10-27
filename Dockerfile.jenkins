@@ -1,0 +1,12 @@
+FROM node:18-alpine
+
+USER root
+
+RUN apk add --no-cache ca-certificates
+
+COPY certificates/company-root-ca.crt \
+     /usr/local/share/ca-certificates/company-root-ca.crt
+
+RUN update-ca-certificates
+
+ENV NODE_EXTRA_CA_CERTS=/etc/ssl/certs/ca-certificates.crt
