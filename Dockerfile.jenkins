@@ -2,11 +2,17 @@ FROM node:22-alpine
 
 USER root
 
-RUN apk add --no-cache ca-certificates
-
+# Add your IT-provided corporate CA certificate first.
+# It must be PEM-encoded, with a .crt extension.
 COPY certificates/company-root-ca.crt \
      /usr/local/share/ca-certificates/company-root-ca.crt
 
-RUN update-ca-certificates
+# Bootstrap trust for apk using Alpine's existing CA bundle.
+RUN printf '\n' >> /etc/ssl/certs/ca-certificates.crt \
+    && cat /usr/local/share/ca-certificates/company-root-ca.crt \
+       >> /etc/ssl/certs/ca-certificates.crt \
+    && apk add --no-cache ca-certificates \
+    && update-ca-certificates
 
+# Also make Node.js trust the updated CA bundle.
 ENV NODE_EXTRA_CA_CERTS=/etc/ssl/certs/ca-certificates.crt
