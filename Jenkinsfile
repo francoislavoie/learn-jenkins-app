@@ -99,7 +99,7 @@ pipeline {
             }
 
             environment {
-                CI_ENVIRONMENT_URL = 'https://storied-cat-0c74f5.netlify.app/'
+                CI_ENVIRONMENT_URL = 'https://storied-cat-0c74f5.netlify.app'
             }
 
             steps {
