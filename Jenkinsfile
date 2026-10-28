@@ -5,7 +5,7 @@ pipeline {
         NETLIFY_SITE_ID = '4e0eb0ac-c8d0-4ced-ba0b-bfd068a27d82'
         NETLIFY_AUTH_TOKEN = credentials('netlify-token')
     }
-
+    
     stages {
         stage('Build') {
             agent {
@@ -16,6 +16,7 @@ pipeline {
             }
             steps {
                 sh '''
+                    echo "Small change"
                     ls -la
                     node --version
                     npm --version
