@@ -3,7 +3,7 @@ FROM node:22-alpine
 USER root
 
 # Add your IT-provided corporate CA certificate first.
-# It must be PEM-encoded, with a .crt extension.
+# It must be PEM-encoded, with a .crt extension. 
 COPY certificates/company-root-ca.crt \
      /usr/local/share/ca-certificates/company-root-ca.crt
 
