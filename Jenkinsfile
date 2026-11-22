@@ -75,8 +75,8 @@ pipeline {
 
         stage('Deploy staging') {
             agent {
-                docker {
-                    image 'node:18-alpine'
+                dockerfile {
+                    filename 'Dockerfile.netlify'
                     reuseNode true
                 }
             }
@@ -93,8 +93,8 @@ pipeline {
 
         stage('Deploy prod') {
             agent {
-                docker {
-                    image 'node:18-alpine'
+                dockerfile {
+                    filename 'Dockerfile.netlify'
                     reuseNode true
                 }
             }
